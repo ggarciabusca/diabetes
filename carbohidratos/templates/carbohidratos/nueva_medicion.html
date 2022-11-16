@@ -1,0 +1,18 @@
+{% extends "carbohidratos/base.html" %}
+
+{% block contenido %}
+
+<h1 class="mt-4">Mediciones</h1>
+<p> Aca vamos a agregar una nueva medicion</p>
+<form action="/carbohidratos/mediciones/nueva/" method="post">
+    {% csrf_token %}
+    <p> DNI: <input type="number" name="dni_mediciones"> </p>
+    <p> Fecha y Hora: <input type="datetime" name="dia_hora_mediciones"> </p>
+    <p> Medida de glucosa en sangre: <input type="number" name="dato"> </p>
+
+    <input type="submit" value="Ingresar medicion">
+
+</form>
+<a href="{% url 'carbohidratos-inicio' %}"> Ir a inicio </a>
+
+{% endblock %}
