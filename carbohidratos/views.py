@@ -6,7 +6,7 @@ from carbohidratos.forms import AlimentoNuevo
 # Create your views here.
 
 def inicio(request):
-    return render(request,"carbohidratos/base.html")
+    return render(request,"carbohidratos/inicio.html")
     pass
 def personas(request):
     return render(request, "carbohidratos/personas.html")

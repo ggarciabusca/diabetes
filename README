@@ -5,3 +5,5 @@ seguimiento a la alimentación de pacientes con diabetes, la
 medición del azúcar en sangre y la dosificación de insulina
 necesaria.
 
+Desde la dirección de inicio (/carbohidratos/inicio/) se accede a la pagina inicial de la aplicación.
+Desde allí, se puede navegar con la barra lateral derecha dentro de los modelos para: listar, buscar e incorporar instancias a la base de datos
