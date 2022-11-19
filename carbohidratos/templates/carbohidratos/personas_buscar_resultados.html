@@ -1,0 +1,16 @@
+{% extends "carbohidratos/base.html" %}
+
+{% block contenido %}
+
+<h1 class="mt-4">Personas</h1>
+<p> Mostramos los datos de la persona buscada </p>
+
+    <ul>
+        {% for persona in personas_resultado %}
+            <li>{{persona.apellido}}, {{persona.nombre}} - DNI: {{persona.dni}}</li>
+        {% endfor %}
+    </ul>
+
+<a href="{% url 'carbohidratos-personas' %}"> Personas </a>
+
+{% endblock %}
