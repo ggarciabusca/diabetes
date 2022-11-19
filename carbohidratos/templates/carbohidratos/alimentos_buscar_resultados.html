@@ -1,0 +1,17 @@
+{% extends "carbohidratos/base.html" %}
+
+{% block contenido %}
+
+<h1 class="mt-4">Alimentos</h1>
+<p> Mostramos los datos del alimento buscado </p>
+
+    <ul>
+        {% for alimento in alimento_resultado %}
+            <li>Alimento: {{alimento.alimento}} - Carbohidratos: {{alimento.carbohidratos}} por racion - Ración: {{alimento.racion}}</li>
+        {% endfor %}
+    </ul>
+
+<a href="{% url 'carbohidratos-inicio' %}"> Ir a inicio </a>
+
+
+{% endblock %}

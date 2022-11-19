@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from carbohidratos.models import *
+from carbohidratos.forms import AlimentoNuevo
 
 # Create your views here.
 
@@ -30,22 +31,59 @@ def nueva_persona(request):
 
 def comidas(request):
     return render(request,"carbohidratos/comidas.html")
-    pass
+    
 
 def mediciones(request):
     return render(request,"carbohidratos/mediciones.html")
 
 def nueva_medicion(request):
     if request.method == "POST":
-        nuevo_dni= request.POST["dni_mediciones"]
-        nuevo_dia_hora = request.POST["dia_hora_mediciones"]
+        nuevo_dni= request.POST["dni"]
+        nuevo_dia_hora = request.POST["dia_hora"]
         nuevo_dato = request.POST["dato"]
     
         medicion_nueva = Medicion(dni=nuevo_dni, dia_hora=nuevo_dia_hora, dato=nuevo_dato)
         medicion_nueva.save()
     return render(request, "carbohidratos/nueva_medicion.html")
 
-    
+
 def alimentos(request):
     return render(request,"carbohidratos/alimentos.html")
+
+def nuevo_alimento(request):
+    #si la petición es de tipo POST
+    if request.method == "POST":
+        
+        #cargo los datos
+        formulario = AlimentoNuevo(request.POST)
+
+        #valido que el formulario tenga datos válidos
+        if formulario.is_valid():
+        
+            #recupero los datos del formulario hacia una variable llamada "datos"
+            datos = formulario.cleaned_data
+        
+            #y creo el alimento en la base de datos
+            alimento_nuevo = Alimentos(alimento=datos["alimento"], carbohidratos=datos["carbohidratos"], racion=datos["racion"], indice_glucemico=datos["indice_glucemico"])
+            alimento_nuevo.save()
+            
+    formulario = AlimentoNuevo()
+    contexto = {"formulario":formulario}
+#le paso un diccionario como contexto a mi plantilla con la info que quiero
+    return render(request, "carbohidratos/nuevo_alimento.html",contexto)
+
+def alimentos_listar(request):
+    
     pass
+
+
+def alimentos_buscar(request):
+
+    return render(request, "carbohidratos/alimentos_buscar.html")
+
+def alimentos_buscar_resultado(request):
+    alimento_a_buscar = request.GET["alimento_a_buscar"]
+    alimento_resultado = Alimentos.objects.filter(alimento__icontains=alimento_a_buscar)
+    
+    contexto = {"alimento_resultado":alimento_resultado}
+    return render(request, "carbohidratos/alimentos_buscar_resultados.html",contexto)

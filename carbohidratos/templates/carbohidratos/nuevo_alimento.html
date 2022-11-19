@@ -1,0 +1,20 @@
+{% extends "carbohidratos/base.html" %}
+
+{% block contenido %}
+
+<h1 class="mt-4">Alimentos</h1>
+<p> Aca vamos a agregar un nuevo alimento </p>
+
+<form action="" method="post">
+    {% csrf_token %}
+    
+    {{formulario.as_p}}
+
+    <input type="submit" value="Crear alimento">
+
+
+</form>
+<a href="{% url 'carbohidratos-inicio' %}"> Ir a inicio </a>
+
+
+{% endblock %}

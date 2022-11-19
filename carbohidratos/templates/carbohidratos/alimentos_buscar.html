@@ -1,0 +1,18 @@
+{% extends "carbohidratos/base.html" %}
+
+{% block contenido %}
+
+<h1 class="mt-4">Alimentos</h1>
+<p> Aca vamos a buscar un alimento </p>
+
+<form action="{% url 'carbohidratos-alimentos-buscar-resultados' %}" method="get">
+    <p>
+    Alimento: <input type="text" name="alimento_a_buscar">
+    <input type="submit" value="Buscar alimento">
+    </p>
+
+</form>
+<a href="{% url 'carbohidratos-inicio' %}"> Ir a inicio </a>
+
+
+{% endblock %}
