@@ -46,7 +46,7 @@ def nueva_medicion(request):
         nuevo_dia_hora = request.POST["dia_hora"]
         nuevo_dato = request.POST["dato"]
     
-        medicion_nueva = Medicion(dni=nuevo_dni, dia_hora=nuevo_dia_hora, dato=nuevo_dato)
+        medicion_nueva = Medicion(dni_id=nuevo_dni, dia_hora=nuevo_dia_hora, dato=nuevo_dato)
         medicion_nueva.save()
         return render(request,"carbohidratos/mediciones.html")
         

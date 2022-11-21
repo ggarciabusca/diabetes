@@ -21,6 +21,6 @@ class Alimentos(models.Model):
     indice_glucemico = models.IntegerField(default=0)
 
 class Medicion(models.Model):
-    dni = models.IntegerField()
+    dni = models.ForeignKey(Persona, on_delete=models.CASCADE)
     dia_hora = models.DateTimeField()
     dato = models.IntegerField(default=0)
