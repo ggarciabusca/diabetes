@@ -1,0 +1,16 @@
+{% extends "carbohidratos/base.html" %}
+
+{% block contenido %}
+
+<h1 class="mt-4">Mediciones</h1>
+<p> Mostramos las medidas de glucemia de {{apellido}}, {{nombre}} </p>
+
+    <ul>
+        {% for medida in medidas_resultado %}
+            <li>Fecha y Hora: {{medida.dia_hora}} - Glucosa en sangre: {{medida.dato}}</li>
+        {% endfor %}
+    </ul>
+
+<a href="{% url 'carbohidratos-mediciones' %}"> Volver </a>
+
+{% endblock %}

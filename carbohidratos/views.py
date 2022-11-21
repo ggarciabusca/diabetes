@@ -52,6 +52,22 @@ def nueva_medicion(request):
         
     return render(request, "carbohidratos/nueva_medicion.html")
 
+def mediciones_buscar(request):
+    return render(request, "carbohidratos/mediciones_buscar.html")
+    
+
+def mediciones_buscar_resultado(request):
+
+    #obtengo el dni a buscar
+    persona_a_buscar = request.GET["persona_a_buscar"]
+
+    #obtengo de la base de datos el listado de mediciones de la persona indicada
+    medidas_resultado = Medicion.objects.filter(dni_id=persona_a_buscar)
+    persona = Persona.objects.filter(dni=persona_a_buscar)
+
+    #paso como contexto el listado de las mediciones
+    contexto = {"nombre":persona[0].nombre,"apellido":persona[0].apellido, "medidas_resultado":medidas_resultado}
+    return render(request,"carbohidratos/mediciones_buscar_resultados.html", contexto)
 
 def alimentos(request):
     return render(request,"carbohidratos/alimentos.html")

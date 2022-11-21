@@ -1,0 +1,16 @@
+{% extends "carbohidratos/base.html" %}
+
+{% block contenido %}
+
+<h1 class="mt-4">Mediciones</h1>
+<p> Aca vamos a buscar las mediciones de glucemia de una persona </p>
+
+<form action="{% url 'carbohidratos-mediciones-buscar-resultados' %}" method="get">
+    <p>
+    DNI a buscar: <input type="number" name="persona_a_buscar">
+    <input type="submit" value="Buscar Mediciones">
+    </p>
+
+</form>
+
+{% endblock %}
