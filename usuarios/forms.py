@@ -14,4 +14,4 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ["username","first_name","last_name","email","password1","password2"]
         #Sacamos los mensajes de ayuda
-        #help_texts = {k:"" for k in fields}
+        help_texts = { "email": "Indica un correo electronico que uses habitualmente", "first_name": "", "last_name": "", "password1": ""}

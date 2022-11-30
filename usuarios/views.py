@@ -42,10 +42,16 @@ def registrar_usuario(request):
     if request.method == "POST":
         formulario = UserRegisterForm(request.POST)
         if formulario.is_valid():
+            data = formulario.cleaned_data
             formulario.save()
+            user = authenticate(username=data["username"], password=data["password1"])
+            login(request,user)
             return redirect("carbohidratos-inicio")
         else:
             return render(request,"usuarios/registrar_usuario.html", {"form":formulario, "errors": errors})
             
     formulario = UserRegisterForm()
     return render(request, "usuarios/registrar_usuario.html", {"form":formulario, "errors": errors})
+
+
+

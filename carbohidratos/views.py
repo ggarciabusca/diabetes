@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from carbohidratos.models import *
 from carbohidratos.forms import AlimentoNuevo
+#from django.contrib.auth.mixins import LoginRequiredMixin esto sirve para requerir autenticación en Vistas basadas en clases
+from django.contrib.auth.decorators import login_required # lo mismo que el anterior, pero para Vistas basadas en Funciones
 
 # Create your views here.
 
@@ -11,6 +13,7 @@ def inicio(request):
 def personas(request):
     return render(request, "carbohidratos/personas.html")
 
+@login_required
 def personas_listar(request):
     #obtengo el listado de personas de la base de datos
     lista_personas = Persona.objects.all()

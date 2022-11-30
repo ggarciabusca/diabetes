@@ -125,5 +125,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-#Config de login
+#Config de login, cuando requiero que el usuario esté logueado para acceder a alguna vista
 LOGIN_URL = "/usuarios/login/"
