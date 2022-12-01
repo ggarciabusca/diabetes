@@ -66,8 +66,6 @@ def editar_usuario(request):
             usuario.first_name = data["first_name"]
             usuario.last_name = data["last_name"]
             usuario.email = data["email"]
-            #usuario.password1 = data["password1"]
-            #usuario.password2 = data["password2"]
             usuario.save()
 
             return redirect("carbohidratos-inicio")
