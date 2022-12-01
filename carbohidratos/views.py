@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from carbohidratos.models import *
+from usuarios.models import *
 from carbohidratos.forms import AlimentoNuevo
 #from django.contrib.auth.mixins import LoginRequiredMixin esto sirve para requerir autenticación en Vistas basadas en clases
 from django.contrib.auth.decorators import login_required # lo mismo que el anterior, pero para Vistas basadas en Funciones
@@ -8,8 +9,13 @@ from django.contrib.auth.decorators import login_required # lo mismo que el ante
 # Create your views here.
 
 def inicio(request):
-    return render(request,"carbohidratos/inicio.html")
-    pass
+    if request.user.is_authenticated:
+        imagen_usuario = Avatar.objects.filter(user=request.user.id)[0]
+        imagen_url = imagen_usuario.imagen.url
+    else:
+        imagen_url = ""
+    return render(request,"carbohidratos/inicio.html",{"avatar":imagen_url})
+    
 def personas(request):
     return render(request, "carbohidratos/personas.html")
 

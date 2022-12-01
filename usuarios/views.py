@@ -71,6 +71,7 @@ def editar_usuario(request):
             return redirect("carbohidratos-inicio")
     else:
         formulario = UserEditForm(initial={"first_name":usuario.first_name,"last_name":usuario.last_name,"email":usuario.email})
-
-    return render(request,"usuarios/editar_usuario.html", {"form":formulario,"usuario":usuario})
     
+    return render(request,"usuarios/editar_usuario.html", {"form":formulario,"usuario":usuario})
+
+
