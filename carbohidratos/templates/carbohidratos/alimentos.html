@@ -8,5 +8,7 @@
 
 <p><a href="{% url 'carbohidratos-alimentos-buscar' %}"> Buscar alimentos </a></p>
 <p><a href="{% url 'carbohidratos-alimentos-listar' %}"> Listar alimentos </a></p>
-<p><a href="{% url 'carbohidratos-alimentos-nuevo' %}"> Nuevo alimento </a></p>
+{% if return.user.is_superuser %}
+    <p><a href="{% url 'carbohidratos-alimentos-nuevo' %}"> Nuevo alimento </a></p>
+{% endif %}
 {% endblock %}

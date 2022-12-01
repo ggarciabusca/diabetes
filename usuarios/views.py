@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate #funcines necesarias
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from usuarios.forms import UserRegisterForm
+from usuarios.forms import UserRegisterForm, UserEditForm
+from django.contrib.auth.decorators import login_required
 
 #importo el BASE_DIR del proyecto para manejar archivos
 from diabetes.settings import BASE_DIR
@@ -53,5 +54,25 @@ def registrar_usuario(request):
     formulario = UserRegisterForm()
     return render(request, "usuarios/registrar_usuario.html", {"form":formulario, "errors": errors})
 
+@login_required
+def editar_usuario(request):
+    
+    usuario = request.user
+    if request.method == "POST":
+        formulario = UserEditForm(request.POST)
 
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            usuario.first_name = data["first_name"]
+            usuario.last_name = data["last_name"]
+            usuario.email = data["email"]
+            #usuario.password1 = data["password1"]
+            #usuario.password2 = data["password2"]
+            usuario.save()
 
+            return redirect("carbohidratos-inicio")
+    else:
+        formulario = UserEditForm(initial={"first_name":usuario.first_name,"last_name":usuario.last_name,"email":usuario.email})
+
+    return render(request,"usuarios/editar_usuario.html", {"form":formulario,"usuario":usuario})
+    
