@@ -12,6 +12,7 @@ def inicio(request):
     if request.user.is_authenticated:
         imagen_usuario = Avatar.objects.filter(user=request.user.id)[0]
         imagen_url = imagen_usuario.imagen.url
+        
     else:
         imagen_url = ""
     return render(request,"carbohidratos/inicio.html",{"avatar":imagen_url})
