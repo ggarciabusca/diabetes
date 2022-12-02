@@ -5,18 +5,27 @@ from usuarios.models import *
 from carbohidratos.forms import AlimentoNuevo
 #from django.contrib.auth.mixins import LoginRequiredMixin esto sirve para requerir autenticación en Vistas basadas en clases
 from django.contrib.auth.decorators import login_required # lo mismo que el anterior, pero para Vistas basadas en Funciones
+import os
+from diabetes.settings import BASE_DIR
 
 # Create your views here.
 
 def inicio(request):
     if request.user.is_authenticated:
-        imagen_usuario = Avatar.objects.filter(user=request.user.id)[0]
-        imagen_url = imagen_usuario.imagen.url
-        
+        if len(Avatar.objects.filter(user= request.user.id))==1:
+            imagen_model = Avatar.objects.filter(user= request.user.id)[0]
+            imagen_url = imagen_model.imagen.url
+        else:
+            imagen_url=""
     else:
         imagen_url = ""
-    return render(request,"carbohidratos/inicio.html",{"avatar":imagen_url})
-    
+    return render(request, "carbohidratos/inicio.html", {"avatar": imagen_url})
+
+#def inicio(request):
+#    return render(request,"carbohidratos/inicio.html")
+
+
+
 def personas(request):
     return render(request, "carbohidratos/personas.html")
 

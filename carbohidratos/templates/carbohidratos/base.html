@@ -33,7 +33,8 @@
                     <div class="container-fluid">
                         {% if request.user.is_authenticated %}
                             <p> Hola! {{request.user.first_name}} </p>
-                            <img height="100px" src="avatar">
+                            <img height="50px" src={{avatar}}>
+                            
                         {% else %}
                             <p> Hola Visitante! </p>
                         {% endif %}

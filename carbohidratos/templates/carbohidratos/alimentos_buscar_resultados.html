@@ -5,17 +5,12 @@
 <h1 class="mt-4">Alimentos</h1>
 <p> Mostramos los datos del alimento buscado </p>
 
-    {% if alimento_resultado %}
-        <p> No hay alimentos para mostrar </p>
-    {% else %}
         <ul>
             {% for alimento in alimento_resultado %}
                 <li>Alimento: {{alimento.alimento}} - Carbohidratos: {{alimento.carbohidratos}} por racion - Ración: {{alimento.racion}}</li>
             {% endfor %}
         </ul>
     
-    {% endif %}
-
 <a href="{% url 'carbohidratos-alimentos' %}"> Volver </a>
 
 {% endblock %}

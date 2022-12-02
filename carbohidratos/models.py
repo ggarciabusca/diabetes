@@ -19,6 +19,7 @@ class Alimentos(models.Model):
     carbohidratos = models.DecimalField(decimal_places=2,max_digits=6)
     racion = models.CharField(max_length=50)
     indice_glucemico = models.IntegerField(default=0)
+#    imagen = models.ImageField(upload_to='imagenes',null=True,blank=True)
 
 class Medicion(models.Model):
     dni = models.ForeignKey(Persona, on_delete=models.CASCADE)
